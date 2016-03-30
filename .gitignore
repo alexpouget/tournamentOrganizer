@@ -2,5 +2,6 @@
 .idea/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
+.idea/*
 .idea/jsLibraryMappings.xml
 application.properties
