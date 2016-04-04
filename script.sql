@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mar 29 Mars 2016 à 12:21
+-- Généré le :  Mar 05 Avril 2016 à 00:24
 -- Version du serveur :  5.5.42
 -- Version de PHP :  7.0.0
 
@@ -13,6 +13,43 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `TournamentOrganizer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Game`
+--
+
+CREATE TABLE `Game` (
+  `id` int(11) NOT NULL,
+  `idTournament` int(11) NOT NULL,
+  `groupe` int(11) DEFAULT NULL,
+  `position` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Tournament`
+--
+
+CREATE TABLE `Tournament` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `idTypeTournament` int(11) DEFAULT NULL,
+  `nbPlayer` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `TypeTournament`
+--
+
+CREATE TABLE `TypeTournament` (
+  `id` int(11) NOT NULL,
+  `name` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -33,9 +70,42 @@ CREATE TABLE `User` (
 INSERT INTO `User` (`id`, `name`, `email`) VALUES
 (1, 'alexandre', 'pouget.al@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `UserMatch`
+--
+
+CREATE TABLE `UserMatch` (
+  `id` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `idGame` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `Game`
+--
+ALTER TABLE `Game`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idTournament` (`idTournament`);
+
+--
+-- Index pour la table `Tournament`
+--
+ALTER TABLE `Tournament`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idTypeTournament` (`idTypeTournament`);
+
+--
+-- Index pour la table `TypeTournament`
+--
+ALTER TABLE `TypeTournament`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `User`
@@ -44,11 +114,61 @@ ALTER TABLE `User`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `UserMatch`
+--
+ALTER TABLE `UserMatch`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUser` (`idUser`),
+  ADD KEY `idGame` (`idGame`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `Game`
+--
+ALTER TABLE `Game`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `Tournament`
+--
+ALTER TABLE `Tournament`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `TypeTournament`
+--
+ALTER TABLE `TypeTournament`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `User`
 --
 ALTER TABLE `User`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `UserMatch`
+--
+ALTER TABLE `UserMatch`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `Game`
+--
+ALTER TABLE `Game`
+  ADD CONSTRAINT `game_ibfk_1` FOREIGN KEY (`idTournament`) REFERENCES `Tournament` (`id`);
+
+--
+-- Contraintes pour la table `Tournament`
+--
+ALTER TABLE `Tournament`
+  ADD CONSTRAINT `tournament_ibfk_1` FOREIGN KEY (`idTypeTournament`) REFERENCES `TypeTournament` (`id`);
+
+--
+-- Contraintes pour la table `UserMatch`
+--
+ALTER TABLE `UserMatch`
+  ADD CONSTRAINT `usermatch_ibfk_2` FOREIGN KEY (`idGame`) REFERENCES `Game` (`id`),
+  ADD CONSTRAINT `usermatch_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `User` (`id`);
