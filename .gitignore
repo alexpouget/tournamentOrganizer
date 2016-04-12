@@ -5,3 +5,7 @@
 .idea/*
 .idea/jsLibraryMappings.xml
 application.properties
+target/*
+.DS_Store
+*.iml
+lib/
