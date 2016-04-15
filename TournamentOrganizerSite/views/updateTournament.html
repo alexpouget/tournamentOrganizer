@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id="updateTournament" class ="row">
+			<form name="formupdateTournament">
+				<h2> Mettre à jour un tournoi</h2>
+					<div class="row">
+						<label>Choisissez le tournoi : </label>
+							<select name="selectedTournament" id="selectedTournament" class="col-md-3" ng-model="selectedTournament" required>
+							 <option disabled selected value> -- select an option -- </option>
+								<option value="babar_tournoi">Tournoi de babar</option> 
+								<option value="ben_tournoi">Tournoi de ben</option>
+								<option value="pgx_tournoi">Tournoi de Pougeax</option>
+							</select>
+							<input type ="button" value="Mettre à jour" id="updateTournamentButton" ng-disabled="formupdateTournament.$invalid" ng-click="updatetournament()"/>		
+					</div>
+			</form>
+		</div>
+	</body>
+</html>
