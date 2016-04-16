@@ -44,7 +44,7 @@ TournamentOrganizerApp.config(['$routeProvider',
             controller: 'showTournament'
         })
 		 .otherwise({
-             templateUrl: 'accueil.html',
+             templateUrl: 'views/accueil.html',
              controller: 'homeCtrl'
         });
     }
