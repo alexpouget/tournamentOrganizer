@@ -52,8 +52,10 @@ li:last-child a:hover{
 input {
 	align : right;
 }
-
-#formCreate,#formAddParticipants,#followtournament,#updateTournament,#showTournamentStyle{
+#accueil h1{
+	color: #e5e5e5; 
+}
+#formCreate,#formAddParticipants,#followtournament,#updateTournament,#showTournamentStyle,#updateTournamentAddMatch,#accueil{
 	width: 50%;
 	margin-left : 522px;
 }
@@ -80,7 +82,7 @@ label{
 	margin-top: 50px;
 }
 
-#formAddParticipants #create_player{
+#formAddParticipants #create_player,#addMatchScoreTournamentButton{
 	height: 35px;
 	line-height: 0px;
 }
@@ -100,6 +102,7 @@ label{
 
 #showTournament,#updateTournamentButton,#showTourRes,#showChampionnatStyle{
 	margin-left: 30px;
+	
 }
 #tableResTour th,#tableResChampionnat th,#tableClassementChamp th{
 	background-color: #42b972;
@@ -129,4 +132,71 @@ label{
 }
 #showTournamentStyle row,#showChampionnatStyle row{
 	margin-right: 0px;
+}
+
+.col-sm-1{
+	width: 5%;
+}
+
+#updateTournamentAddMatch #match_1_p2_name{
+   float: none;
+}
+
+#updateTournamentAddMatch #match_1_score_p1{
+	margin-top: -47px;
+	margin-left: 169px;
+	position: absolute;
+	width: 2%;
+}
+#updateTournamentAddMatch #match_1_score_p2{
+	margin-top: -47px;
+	margin-left: 215px;
+	position: absolute;
+	padding:0px;
+	width: 2%;
+}
+
+#updateTournamentAddMatch #match_1_score_p1{
+	margin-top: -47px;
+	position: absolute;
+	width: 2%;
+	margin-left: 40px;
+	padding:0px;
+}
+#updateTournamentAddMatch p{
+   display: inline-block;
+   margin-left: 38px;
+   margin-right: 58px;
+   color: grey;
+   font-weight: bold;
+   font-size: 1.1em;
+}
+
+#lignescore p{
+  font-size: 52px;
+  position: absolute;
+  margin-left: 133px;
+  margin-top: -50px;
+}
+
+#lignescore input{
+  text-align: center;
+}
+
+#addMatchScoreTournamentButton{
+  margin-left: 46px;
+}
+
+#lignename div{
+  display: inline-block;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#lignescore{
+  margin-top: -33px;
+  margin-left: 10px;
+}
+#labelMatch{
+  display:inline-block;
 }

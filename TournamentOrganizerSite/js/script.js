@@ -20,10 +20,10 @@ TournamentOrganizerApp.config(['$routeProvider',
         
         // Système de routage
         $routeProvider
-        .when('/index', {
-            templateUrl: 'bb.html',
-            controller: 'homeCtrl'
-        })
+		   .when('/accueil', {
+				templateUrl: 'views/accueil.html',
+				controller: 'homeCtrl'
+			})
             .when('/createTournament', {
                 templateUrl: 'views/createTournament.html',
 
@@ -44,7 +44,7 @@ TournamentOrganizerApp.config(['$routeProvider',
             controller: 'showTournament'
         })
 		 .otherwise({
-             templateUrl: 'bb.html',
+             templateUrl: 'accueil.html',
              controller: 'homeCtrl'
         });
     }
