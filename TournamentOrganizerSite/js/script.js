@@ -6,8 +6,8 @@
  */
 var TournamentOrganizerApp = angular.module('TournamentOrganizerApp', [
     // Dépendances du "module"
-    'ngRoute',
-	'routeAppControllers'
+    'ngRoute','ngResource'
+
 ]);
 
 
@@ -24,13 +24,12 @@ TournamentOrganizerApp.config(['$routeProvider',
             templateUrl: 'bb.html',
             controller: 'homeCtrl'
         })
-        .when('/createTournament', {
-            templateUrl: 'views/createTournament.html',
-            controller: 'createTournament'
-        })
-		 .when('/addParticipants/?', {
-            templateUrl: 'views/addParticipants.html',
-            controller: 'addParticipants'
+            .when('/createTournament', {
+                templateUrl: 'views/createTournament.html',
+
+            })
+		 .when('/addParticipants/:id', {
+            templateUrl: 'views/addParticipants.html'
         })
 		 .when('/followTournament', {
             templateUrl: 'views/followTournament.html',
@@ -45,68 +44,22 @@ TournamentOrganizerApp.config(['$routeProvider',
             controller: 'showTournament'
         })
 		 .otherwise({
-            redirectTo: '/breh'
+             templateUrl: 'bb.html',
+             controller: 'homeCtrl'
         });
     }
 ]);
 
-/**
- * Définition des contrôleurs
- */
-var routeAppControllers = angular.module('routeAppControllers', []);
-
-
-// Contrôleur de la page CreateTournament
-routeAppControllers.controller('createTournament', ['$scope','dataShare',
-    function($scope,dataShare){
-		 $scope.send = function(){		 
-           dataShare.sendData($scope);
-         };
-    }
-]);
-
-
 // Contrôleur de la page d'accueil
-routeAppControllers.controller('homeCtrl', ['$scope',
+TournamentOrganizerApp.controller('homeCtrl', ['$scope',
     function($scope){
         $scope.message = "Bienvenue sur la page d'accueil";
     }
 ]);
 
 
-// Contrôleur de la page addParticipants
-routeAppControllers.controller('addParticipants', ['$scope','dataShare',
-    function ($scope,dataShare) {         
-               
-			   // recuperation des données du controller de createTournament
-               var text =  dataShare.getData(); 
-			   $scope.hide=false;
-			   var countClick = 0;
-			   
-			   // recuperation des valeurs du précédent form
-			   var nb_part = text.nb_part;
-			   var jeu = text.jeu;
-			   var tournamentType = text.tournamentType;
-			   var participants = [];
-			   var params = { "nb_part" : nb_part, "jeu" : jeu, "tournamentType": tournamentType, "participants" : participants };
-			  $scope.ajouterPart = function() {
-			  participants.push($scope.player_name);
-					countClick++;
-				if(countClick == nb_part)
-				{
-					$scope.hide= true;
-				}
-		}
-		
-		$scope.createTournamentCall = function() {
-		// transmettre les données au WS
-		alert('on envoie');
-		}
-		}
-]);
-
 // controleur de la page followTournament
-routeAppControllers.controller('followTournament', ['$scope',
+TournamentOrganizerApp.controller('followTournament', ['$scope',
     function($scope){
 			$scope.followtournament = function(){		 
 				var selectedTournament = $scope.selectedTournament;
@@ -117,7 +70,7 @@ routeAppControllers.controller('followTournament', ['$scope',
 ]);
 
 // controleur de la page updateTournament
-routeAppControllers.controller('updateTournament', ['$scope',
+TournamentOrganizerApp.controller('updateTournament', ['$scope',
     function($scope){
 			$scope.followtournament = function(){		 
 				var selectedTournament = $scope.selectedTournament;
@@ -127,8 +80,9 @@ routeAppControllers.controller('updateTournament', ['$scope',
     
 ]);
 
+
 // controleur de la page showTournament
-routeAppControllers.controller('showTournament', ['$scope',
+TournamentOrganizerApp.controller('showTournament', ['$scope',
     function($scope){
 	
 		// pour l'instant mis en mode tournoi les affichage pour le mode championnat sont en display none 

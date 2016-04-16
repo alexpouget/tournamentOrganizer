@@ -35,7 +35,7 @@ public class TypeTournamentController {
     public TypeTournament updateTypeTournament(@PathVariable int id,@RequestBody TypeTournament typeTournament){
         TypeTournament typeTournament1 = new TypeTournament();
         typeTournament1.setName(typeTournament.getName());
-        typeTournament1.setId(id);
+        typeTournament1.setIdTypeTournament(id);
         return typeTournamentRepository.save(typeTournament1);
     }
 	

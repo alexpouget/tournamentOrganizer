@@ -1,12 +1,13 @@
-<!doctype html>
-<html>
-	<body>
-		<h2> Participants au tournoi </h2>
-		<div id="formAddParticipants" class ="row">
-				<input type="hidden" name="nb_part" id="nb_part" />
+
+
+		<div id="formAddParticipants" class ="row" ng-controller ="addParticipants">
+			<h2> Participants au tournoi </h2>
+				<label>Nombre de joueur {{countClick}}/{{tournamentData.nbPlayer}} </label>
+				<!--<input type="hidden" name="nb_part" id="nb_part" />
 				<input type="hidden" name="jeu" id="jeu"/>
 				<input type="hidden" name="nb_tour" id="nb_tour"/>
-				<input type="hidden" name="tournamentType" id="tournamentType"/>
+				<input type="hidden" name="tournamentType" id="tournamentType"/>-->
+
 				<label>Nom du joueur : </label>
 				<input type="text" name="player_name" id="player_name" ng-model="player_name" required/>
 				<input type="button" value="Ajouter" id="create_player" ng-click="ajouterPart()"/>
@@ -14,5 +15,4 @@
 					<input type="submit" value="Lancer le tournoi" id="runTournament" class="ng-hide" ng-show="hide" ng-click="createTournamentCall()"/>
 				</div>
 		</div>
-	</body>
-</html>
+

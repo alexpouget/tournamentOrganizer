@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mar 05 Avril 2016 à 00:24
+-- Généré le :  Jeu 14 Avril 2016 à 19:37
 -- Version du serveur :  5.5.42
 -- Version de PHP :  7.0.0
 
@@ -78,9 +78,21 @@ INSERT INTO `User` (`id`, `name`, `email`) VALUES
 
 CREATE TABLE `UserMatch` (
   `id` int(11) NOT NULL,
-  `idUser` int(11) NOT NULL,
-  `score` int(11) NOT NULL,
-  `idGame` int(11) DEFAULT NULL
+  `idGame` int(11) NOT NULL,
+  `idUserTournament` int(11) NOT NULL,
+  `score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `UserTournament`
+--
+
+CREATE TABLE `UserTournament` (
+  `id` int(11) NOT NULL,
+  `idTournament` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -118,8 +130,16 @@ ALTER TABLE `User`
 --
 ALTER TABLE `UserMatch`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_UserMatch_idGame` (`idGame`),
+  ADD KEY `fk_UserMatch_idUserTournament` (`idUserTournament`);
+
+--
+-- Index pour la table `UserTournament`
+--
+ALTER TABLE `UserTournament`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `idUser` (`idUser`),
-  ADD KEY `idGame` (`idGame`);
+  ADD KEY `idTournament` (`idTournament`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -151,6 +171,11 @@ ALTER TABLE `User`
 ALTER TABLE `UserMatch`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `UserTournament`
+--
+ALTER TABLE `UserTournament`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Contraintes pour les tables exportées
 --
 
@@ -170,5 +195,12 @@ ALTER TABLE `Tournament`
 -- Contraintes pour la table `UserMatch`
 --
 ALTER TABLE `UserMatch`
-  ADD CONSTRAINT `usermatch_ibfk_2` FOREIGN KEY (`idGame`) REFERENCES `Game` (`id`),
-  ADD CONSTRAINT `usermatch_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `User` (`id`);
+  ADD CONSTRAINT `fk_UserMatch_idUserTournament` FOREIGN KEY (`idUserTournament`) REFERENCES `UserTournament` (`id`),
+  ADD CONSTRAINT `fk_UserMatch_idGame` FOREIGN KEY (`idGame`) REFERENCES `Game` (`id`);
+
+--
+-- Contraintes pour la table `UserTournament`
+--
+ALTER TABLE `UserTournament`
+  ADD CONSTRAINT `usertournament_ibfk_2` FOREIGN KEY (`idTournament`) REFERENCES `Tournament` (`id`),
+  ADD CONSTRAINT `usertournament_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `User` (`id`);

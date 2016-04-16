@@ -6,22 +6,24 @@ import javax.persistence.*;
  * Created by Baba Daryoush on 06/04/2016.
  */
 @Entity
-@Table(name = "UserMatch")
+@Table(name = "Usermatch")
 public class UserMatch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "idUser")
-    private String idUser;
+    @ManyToOne
+    @JoinColumn(name = "iduser")
+    private User idUser;
 
 
     @Column(name = "score")
     private int score;
 
-    @Column(name = "idGame")
-    private int idGame;
+    @ManyToOne
+    @JoinColumn(name = "idgame")
+    private Game idGame;
 
     public int getId() {
         return id;
@@ -29,14 +31,6 @@ public class UserMatch {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
     }
 
     public int getScore() {
@@ -47,11 +41,19 @@ public class UserMatch {
         this.score = score;
     }
 
-    public int getIdGame() {
+    public User getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
+
+    public Game getIdGame() {
         return idGame;
     }
 
-    public void setIdGame(int idGame) {
+    public void setIdGame(Game idGame) {
         this.idGame = idGame;
     }
 }

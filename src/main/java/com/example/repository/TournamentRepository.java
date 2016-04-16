@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface TournamentRepository extends JpaRepository<Tournament,Integer> {
 
+    @Query("SELECT a.nbPlayer from Tournament a where a.id = :id")
+    public int getNbPlayer(@Param("id") int id);
 }

@@ -16,11 +16,11 @@ public class Tournament {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "idtypetournament")
+    private TypeTournament typeTournament;
 
-    @Column(name = "idTypeTournament")
-    private int idTypeTournament;
-
-    @Column(name = "nbPlayer")
+    @Column(name = "nbplayer")
     private int nbPlayer;
 
     public int getId() {
@@ -31,9 +31,6 @@ public class Tournament {
         return name;
     }
 
-    public int getIdTypeTournament() {
-        return idTypeTournament;
-    }
 
     public int getNbPlayer() {
         return nbPlayer;
@@ -47,8 +44,12 @@ public class Tournament {
         this.name = name;
     }
 
-    public void setIdTypeTournament(int idTypeTournament) {
-        this.idTypeTournament = idTypeTournament;
+    public TypeTournament getTypeTournament() {
+        return typeTournament;
+    }
+
+    public void setTypeTournament(TypeTournament typeTournament) {
+        this.typeTournament = typeTournament;
     }
 
     public void setNbPlayer(int nbPlayer) {

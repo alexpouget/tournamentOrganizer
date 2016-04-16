@@ -28,6 +28,11 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value="{id}")
+    public User getUsers(@PathVariable int id){
+        return userRepository.findOne(id);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public User addUsers(@RequestBody User user){
         User newUser = userRepository.save(user);

@@ -21,16 +21,14 @@ public class Game {
     @Column(name = "position")
     private int position;
 
-    @Column(name = "idTournament")
-    private int idTournament;
+    @ManyToOne
+    @JoinColumn(name = "idTournament")
+    private Tournament idTournament;
 
     public int getId(){
         return id;
     }
 
-    public int getIdTournament(){
-        return idTournament;
-    }
 
     public int getPosition(){
         return position;
@@ -48,11 +46,15 @@ public class Game {
         this.position = position;
     }
 
-    public void setIdTournament(int idTournament){
-        this.idTournament =  idTournament;
-    }
-
     public void setId(int id){
         this.id = id;
+    }
+
+    public Tournament getIdTournament() {
+        return idTournament;
+    }
+
+    public void setIdTournament(Tournament idTournament) {
+        this.idTournament = idTournament;
     }
 }

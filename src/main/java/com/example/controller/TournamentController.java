@@ -14,14 +14,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping(value = "/tournament")
-
 public class TournamentController {
 
-@Autowired
+    @Autowired
     private TournamentRepository tournamentRepository;
 	@RequestMapping(method = RequestMethod.GET)
     public List<Tournament> getTournaments(){
         return tournamentRepository.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="{id}")
+    public Tournament getTournaments(@PathVariable int id){
+        return tournamentRepository.findOne(id);
     }
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -29,14 +33,14 @@ public class TournamentController {
         Tournament newTournament = tournamentRepository.save(tournament);
         return newTournament;
     }
-	
+
 	@RequestMapping(method = RequestMethod.PUT, value="{id}")
     public Tournament updateTournament(@PathVariable int id,@RequestBody Tournament tournament){
         Tournament tournament1 = new Tournament();
         tournament1.setNbPlayer(tournament.getNbPlayer());
         tournament1.setId(id);
         tournament1.setName(tournament.getName());
-		tournament1.setIdTypeTournament(tournament.getIdTypeTournament());
+		tournament1.setTypeTournament(tournament.getTypeTournament());
         return tournamentRepository.save(tournament1);
     }
 	
