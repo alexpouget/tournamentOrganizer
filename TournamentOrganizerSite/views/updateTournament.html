@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html>
-	<body>
+<div ng-controller ="updateTournament">
 		<div id="updateTournament" class ="row" class="ng-hide" ng-show="cacherPremierFormUpdate">
 			<form name="formupdateTournament">
 				<h2> Mettre à jour un tournoi</h2>
 					<div class="row">
 						<label>Choisissez le tournoi : </label>
-							<select name="selectedTournament" id="selectedTournament" class="col-md-3" ng-model="selectedTournament" required>
-							 <option disabled selected value> -- select an option -- </option>
-								<option value="babar_tournoi">Tournoi de babar</option> 
-								<option value="ben_tournoi">Tournoi de ben</option>
-								<option value="pgx_tournoi">Tournoi de Pougeax</option>
+							<select name="selectedTournament" id="selectedTournament" class="col-md-3" ng-model="selectedTournament" required
+									ng-options="tournament as tournament.name for tournament in tournaments">
+
 							</select>
 							<input type ="button" value="Mettre à jour" id="updateTournamentButton" ng-disabled="formupdateTournament.$invalid" ng-click="updatetournament()"/>
 							<input type ="button" value="Supprimer le tournoi" id="deleteTournamentButton" ng-disabled="formupdateTournament.$invalid" ng-click="deletetournament()"/>							
@@ -18,19 +14,23 @@
 			</form>
 		</div>
 		<div id="updateTournamentAddMatch" class ="row" class="ng-hide" ng-show="afficherSecondFormUpdate">
-			<form name="formupdateTournament2">
-				<h2> Ajouter un score</h2>
-					<div class="row" id="lignename">
-						<label id="labelMatch">Match : </label>
-						<div id="p1name">Babar</div><p> VS </p>
-						<div id="p2name">Ben </div>
-					</div>
-					<div id="lignescore">
-							<input type ="text" name="match_1_score_p1" id="match_1_score_p1" class="col-sm-1" ng-model="match_1_score_p1" required/><p> - </p>
-							<input type ="text" name="match_1_score_p2" id="match_1_score_p2" class="col-sm-1" ng-model="match_1_score_p2" required/>
-							<input type ="button" value="Ajouter le score" id="addMatchScoreTournamentButton" ng-disabled="formupdateTournament2.$invalid" ng-click="addMatchScoretournament()"/>
-					</div>
+			<h2> Ajouter un score</h2>
+			<form name="formupdateTournament2" ng-repeat="game in games | orderBy: 'position' | filter: filterGame">
+
+				<div class="row" id="lignename">
+					<div><label id="labelMatch">Match : {{game.position}}</label></div>
+
+					<div id="p1name">{{game.joueur.idUser.idUserTournament.name}}</div>
+					<p> VS </p>
+					<div id="p2name">{{game.joueur2.idUser.idUserTournament.name}} </div>
+
+				</div>
+				<div id="lignescore" >
+						<input type ="text" name="match_1_score_p1" id="match_1_score_p1" class="col-sm-1" ng-model="game.joueur.score" required/><p> - </p>
+						<input type ="text" name="match_1_score_p2" id="match_1_score_p2" class="col-sm-1" ng-model="game.joueur2.score" required/>
+						<input type ="button" value="Ajouter le score" id="addMatchScoreTournamentButton" ng-disabled="formupdateTournament2.$invalid" ng-click="addMatchScoretournament()"/>
+				</div>
+
 			</form>
 		</div>
-	</body>
-</html>
+</div>

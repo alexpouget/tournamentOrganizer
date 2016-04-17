@@ -1,9 +1,6 @@
 package com.example.controller;
 
-import com.example.entity.Game;
-import com.example.entity.Tournament;
-import com.example.entity.User;
-import com.example.entity.UserMatch;
+import com.example.entity.*;
 import com.example.repository.GameRepository;
 import com.example.repository.UserMatchRepository;
 import com.example.repository.UserTournamentRepository;
@@ -35,7 +32,7 @@ public class GameController {
     }
 	
 	@RequestMapping(method = RequestMethod.POST)
-    public String addGames(@RequestBody Game game){
+    public Game addGames(@RequestBody Game game){
         List<UserMatch> list = new ArrayList<>();
         Tournament tournament = game.getIdTournament();
         switch (tournament.getTypeTournament().getName()) {
@@ -46,11 +43,12 @@ public class GameController {
                 // championnat par groupe puis tournoi direct
                 break;
             case "Championnat":
-                List<User> players = userTournamentRepository.getidUserTournament(tournament.getId());
+                List<UserTournament> players = userTournamentRepository.getAllByIdTournament(tournament.getId());
                 list =  generateLeague(players,tournament);
                 break;
         }
-        return "ok";
+        return new Game();
+       // return gameRepository.getAllByIdTournament(tournament.getId());
     }
 	
 	@RequestMapping(method = RequestMethod.PUT, value="{id}")
@@ -68,7 +66,7 @@ public class GameController {
         gameRepository.delete(id);
     }
 
-    private List<UserMatch> generateLeague(List<User> players, Tournament tournament) {
+    private List<UserMatch> generateLeague(List<UserTournament> players, Tournament tournament) {
         List<UserMatch> list = new ArrayList<>();
         Boolean[][] alreadyMatch = new Boolean[players.size()][players.size()];
         for (int i =0;i<players.size();i++){
@@ -79,7 +77,7 @@ public class GameController {
         Random random = new Random();
         int y = 1;
         for (int i = 1; i < players.size(); i++) {
-            List<User> p = players;
+            List<UserTournament> p = players;
             while (!p.isEmpty()) {
                 Game game = new Game();
                 game.setPosition(y);
@@ -111,7 +109,10 @@ public class GameController {
                 alreadyMatch[index1][index] = true;
             }
         }
+        userTournamentRepository.flush();
+        gameRepository.flush();
         List<UserMatch> newUserMatch = userMatchRepository.save(list);
-        return list;
+        userMatchRepository.flush();
+        return newUserMatch;
     }
 }

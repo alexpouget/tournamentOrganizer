@@ -22,7 +22,6 @@ angular.module('TournamentOrganizerApp').controller('createTournament',
         c.idTypeTournament = $scope.tournamentType.idTypeTournament;
         t.typeTournament = c;
         t.$save(function(data) {
-            window.alert(angular.toJson(data))
             $location.path("/addParticipants/"+data.id);
         });
     }

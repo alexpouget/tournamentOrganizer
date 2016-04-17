@@ -14,8 +14,8 @@ public class UserMatch {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "iduser")
-    private User idUser;
+    @JoinColumn(name = "idusertournament")
+    private UserTournament idUser;
 
 
     @Column(name = "score")
@@ -41,11 +41,11 @@ public class UserMatch {
         this.score = score;
     }
 
-    public User getIdUser() {
+    public UserTournament getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(User idUser) {
+    public void setIdUser(UserTournament idUser) {
         this.idUser = idUser;
     }
 

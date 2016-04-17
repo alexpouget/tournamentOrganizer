@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.entity.Tournament;
-import com.example.repository.TournamentRepository;
+import com.example.entity.*;
+import com.example.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,14 @@ public class TournamentController {
 
     @Autowired
     private TournamentRepository tournamentRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private GameRepository gameRepository;
+    @Autowired
+    private UserMatchRepository userMatchRepository;
+    @Autowired
+    private UserTournamentRepository userTournamentRepository;
 	@RequestMapping(method = RequestMethod.GET)
     public List<Tournament> getTournaments(){
         return tournamentRepository.findAll();
@@ -46,7 +54,29 @@ public class TournamentController {
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="{id}")
     public void deleteTournament(@PathVariable int id){
+        //suppression des dependence  UserMatch UserTournament  Game  User Tournament
+        List<User> userList = userTournamentRepository.getidUserTournament(id);
+        List<Game> gameList = gameRepository.getAllByIdTournament(id);
+
+        for (Game g:gameList) {
+            List<UserMatch> list = userMatchRepository.getByGameId(g.getId());
+            userMatchRepository.delete(list);
+        }
+        userMatchRepository.flush();
+
+        List<UserTournament> listUserTournament = userTournamentRepository.getAllByIdTournament(id);
+        userTournamentRepository.delete(listUserTournament);
+        userTournamentRepository.flush();
+
+        gameRepository.delete(gameList);
+        gameRepository.flush();
+
+        userRepository.delete(userList);
+        userRepository.flush();
         tournamentRepository.delete(id);
+        tournamentRepository.flush();
     }
+
+
 
 }

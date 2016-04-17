@@ -13,12 +13,13 @@ import java.util.List;
 @Repository
 public interface UserTournamentRepository extends JpaRepository<UserTournament,Integer> {
 
-    @Query("select count(a.id) from UserTournament a where a.idUserTournament = :id and a.idTournament = :idTournament")
-    public boolean alreadyPresent(@Param("id") int id,@Param("idTournament") int idTournament);
-
-    @Query("select count(a.id) from UserTournament a where a.idUserTournament = :id")
-    long nbPlayer(@Param("id") int idUserTournament);
-
     @Query("select a.idUserTournament from UserTournament a where a.idTournament.id = :id")
     List<User> getidUserTournament(@Param("id") int idTournament);
+
+    @Query("select a from UserTournament a where a.idTournament.id = :id")
+    List<UserTournament> getAllByIdTournament(@Param("id") int idTournament);
+
+
+    @Query("select a from UserTournament a where a.idTournament.id = :id")
+    void deleteByIdTournament(@Param("id") int idTournament);
 }

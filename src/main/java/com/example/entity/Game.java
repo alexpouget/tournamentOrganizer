@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Baba Daryoush on 05/04/2016.
@@ -22,8 +23,9 @@ public class Game {
     private int position;
 
     @ManyToOne
-    @JoinColumn(name = "idTournament")
+    @JoinColumn(name = "idtournament")
     private Tournament idTournament;
+
 
     public int getId(){
         return id;
@@ -57,4 +59,5 @@ public class Game {
     public void setIdTournament(Tournament idTournament) {
         this.idTournament = idTournament;
     }
+
 }

@@ -21,6 +21,9 @@ public class UserTournament {
     @JoinColumn(name = "idtournament")
     private Tournament idTournament;
 
+    @Column(name = "points")
+    private int points;
+
     public int getId() {
         return id;
     }
@@ -43,5 +46,13 @@ public class UserTournament {
 
     public void setIdUserTournament(User idUserTournament) {
         this.idUserTournament = idUserTournament;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

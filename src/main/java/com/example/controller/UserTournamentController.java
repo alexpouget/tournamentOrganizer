@@ -14,8 +14,6 @@ public class UserTournamentController {
 
     @Autowired
     private UserTournamentRepository userTournamentRepository;
-    @Autowired
-    private TournamentRepository tournamentRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
     public List<UserTournament> getUserTournament(){
@@ -29,16 +27,11 @@ public class UserTournamentController {
 	
 	@RequestMapping(method = RequestMethod.POST)
     public UserTournament addUserTournament(@RequestBody UserTournament userTournament){
-        //si pas deja present on ajoute le joueur
-        //if(!userTournamentRepository.alreadyPresent(userTournament.getId(),userTournament.getIdUserTournament().getId())) {
+
             UserTournament newUserTournament = userTournamentRepository.save(userTournament);
 
-           // if (userTournamentRepository.nbPlayer(userTournament.getIdUserTournament().getId())==tournamentRepository.getNbPlayer(userTournament.getIdUserTournament().getId())) {
-
-            //}
             return newUserTournament;
-       // }
-       // return null;
+
     }
 	
 	@RequestMapping(method = RequestMethod.PUT, value="{id}")
@@ -47,7 +40,8 @@ public class UserTournamentController {
         userTournament1.setIdUserTournament(userTournament.getIdUserTournament());
         userTournament1.setId(id);
         userTournament1.setIdTournament(userTournament.getIdTournament());
-        return userTournamentRepository.save(userTournament1);
+        userTournament1.setPoints(userTournament.getPoints());
+        return userTournamentRepository.saveAndFlush(userTournament1);
     }
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="{id}")

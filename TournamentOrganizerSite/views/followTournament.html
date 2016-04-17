@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
-	<body>
-		<div id="followtournament" class ="row">
-			<form name="formFollowTournament">
-				<h2> Suivre un tournoi</h2>
-					<div class="row">
-						<label>Choisissez le tournoi : </label>
-							<select name="selectedTournament" id="selectedTournament" class="col-md-3" ng-model="selectedTournament" required>
-							 <option disabled selected value> -- Select an option -- </option>
-								<option value="babar_tournoi">Tournoi de babar</option> 
-								<option value="ben_tournoi">Tournoi de ben</option>
-								<option value="pgx_tournoi">Tournoi de Pougeax</option>
-							</select>
-							<input type ="button" onClick="window.location.href='#/showTournament'" value="Voir tournoi" id="showTournament" ng-disabled="formFollowTournament.$invalid" ng-click="followtournament()"/>		
-					</div>
-			</form>
-		</div>
-	</body>
-</html>
+
+<div id="followtournament" class ="row" ng-controller ="followTournament">
+	<form name="formFollowTournament">
+		<h2> Suivre un tournoi</h2>
+			<div class="row">
+				<label>Choisissez le tournoi : </label>
+					<select name="selectedTournament" id="selectedTournament" class="col-md-3" ng-model="selectedTournament" required
+							ng-options="tournament as tournament.name for tournament in tournaments">
+
+					</select>
+					<input type ="button"  value="Voir tournoi" id="showTournament" ng-disabled="formFollowTournament.$invalid" ng-click="followtournament()"/>
+			</div>
+	</form>
+</div>

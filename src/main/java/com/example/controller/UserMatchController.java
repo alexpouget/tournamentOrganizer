@@ -34,6 +34,11 @@ public class UserMatchController {
         return userMatchRepository.findAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
+    public UserMatch getUserMatch(@PathVariable int id) {
+        return userMatchRepository.findOne(id);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public UserMatch addUserMatch(@RequestBody UserMatch userMatch) {
         return userMatchRepository.save(userMatch);
