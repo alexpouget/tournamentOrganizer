@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="TournamentOrganizerApp">
+<head>
+ <meta charset="utf-8"/>
+   <title>TournamentOrganizer</title>
+   <link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+   <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+   <link href="css/style.css" rel="stylesheet">
+   <link href="css/mystyle.css" rel="stylesheet">
+   <link href="css/style-xlarge.css" rel="stylesheet">
+   <link href="css/font-awesome.min.css" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-resource.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.js"></script>
+   <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- Controller -->
+    <script src="js/controller/createTournament.js"></script>
+    <script src="js/controller/addParticipants.js"></script>
+	<script src="js/controller/updateTournament.js"></script>
+    <script src="js/controller/followTournament.js"></script>
+    <script src="js/controller/showTournament.js"></script>
+
+            <!-- Service-->
+    <script src="js/service/userService.js"></script>
+    <script src="js/service/typeTournamentService.js"></script>
+    <script src="js/service/tournamentService.js"></script>
+    <script src="js/service/userTournamentService.js"></script>
+    <script src="js/service/userMatchService.js"></script>
+    <script src="js/service/gameService.js"></script>
+
+   <script src="js/angular-route.js"></script>
+
+</head>
+<body>
+	<h1><center>TournamentOrganizer<center></h1>
+	
+	<div id ="menu">
+		<nav>
+			<ul>
+				 <li><a href="#/accueil">Accueil</a></li>
+				 <li><a href="#/createTournament">Créer un tournoi</a></li>
+				 <li><a href="#/followTournament">Suivre un tournoi</a></li>
+				 <li><a href="#/updateTournament">Mettre à jour un tournoi</a></li>
+		   </ul>
+	   </nav>
+	</div> 
+	<div ng-view>
+        </div>
+	   
+		</body>
+</html>

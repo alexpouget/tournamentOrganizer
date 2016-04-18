@@ -1,0 +1,117 @@
+<div ng-controller ="showTournament">
+
+	<div id="showTournamentStyle" class ="row" style="display:none">
+		<h2> Résultat de votre tournoi </h2>
+		<form name="showTournamentStyleForm">
+			<label>Choissisez le tour de votre tournoi : </label>
+				<select name="tourSelected" id="tourSelected" class="col-md-3" ng-model="tourSelected" required>
+					<option disabled selected value> -- Selectionner tour -- </option>
+					<option value="16_finale">16eme de finale</option>
+					<option value="8_finale">8eme de finale</option>
+					<option value="4_finale">1/4 de finale</option>
+					<option value="2_finale">Demi finale</option>
+					<option value="finale">Finale</option>
+				</select>
+				<input type ="button" value="Voir Résultat" id="showTourRes" ng-disabled="showTournamentStyleForm.$invalid" ng-click="afficherResTour()"/>
+		</form>
+	</div>
+	<div id="tableResTour" ng-model="tableResTour" class="ng-hide" ng-show="afficherResTournoi" class="row">
+			<table border="1">
+				<tr>
+					<th>Joueur 1</th>
+					<th>Joueur 2</th>
+					<th>Score</th>
+					<th>Vainqueur</th>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>3-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+			</table>
+		</div>
+	<div id="showChampionnatStyle" class ="row">
+				<div id="tableResChampionnat" class="row" class="ng-hide" ng-show="afficherResChamp">
+				<label>Résulat des matchs </label>
+			<table border="1">
+				<tr>
+					<th>Joueur 1</th>
+					<th>Joueur 2</th>
+					<th>Score</th>
+					<th>Vainqueur</th>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+				<tr>
+					<td>Babar</td>
+					<td>Ben</td>
+					<td>2-0</td>
+					<td>Babar</td>
+				</tr>
+			</table>
+		</div>
+		<!--class="ng-hide" ng-show="afficherClass"-->
+		<div id="tableClassementChamp" ng-model="tableClassementChamp" class="row" >
+		<label>Classement </label>
+			<table border="1" >
+				<tr>
+					<th>Joueur</th>
+					<th>Points</th>
+				</tr>
+				<tr ng-repeat="user in userTournaments | orderBy: '-points' | filter: filterFunction">
+					<td>{{user.idUserTournament.name}}</td>
+					<td>{{user.points}}</td>
+				</tr>
+			</table>
+		</div>
+		</div>
+		<input type ="button" value="Voir le classement" id="showClassement" ng-click="AfficherClassement()" class="ng-hide" ng-show="afficherBouttonClass"/>
+		<input type ="button" value="Retour aux resultats" id="backToRes" ng-click="BackToRes()" class="ng-hide" ng-show="afficherBouttonBackToRes"/>
+</div>

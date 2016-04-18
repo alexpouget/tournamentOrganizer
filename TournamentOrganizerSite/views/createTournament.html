@@ -1,0 +1,36 @@
+<div id="formCreate" class ="row" ng-controller ="createTournament">
+			<h2> Créer un tournoi</h2>
+				<form name="formCreateTournament" class="col-md-12" ng-submit="form.$valid && submit()" action="#/addParticipants?nb_part=2&jeu" method="POST" novalidate>
+					<div class="row">
+					<label>Nombre de participants : </label>
+					</div>
+						<div class="row">
+							<input type="number" name="nb_part" id="nb_part" class="col-md-1" ng-model="nb_part" min="2" max="32" required/>
+							<span ng-show="formCreateTournament.nb_part.$error.required">Nombre de partipants requis.</span>
+							<span ng-show="formCreateTournament.nb_part.$error.min">Au moins 2 participants</span>
+							<span ng-show="formCreateTournament.nb_part.$error.max">Maximum 32 participants</span>
+						</div>
+					<div class="row">
+					<label>Jeu : </label>
+					</div>
+						<div class="row">
+							<input type="text" name="jeu" id="jeu" class="col-md-4" ng-model="nameTournament" required/>
+							<span ng-show="formCreateTournament.jeu.$error.required">Champ jeu requis.</span>
+						</div>
+					<div class="row">
+					<label>Type de tournoi : {{users.name}}</label>
+					</div>
+						<div class="row">
+							<select name="TournamentType" id="selectTournamentType" class="col-md-3" ng-model="tournamentType" required
+									ng-options="typeTournament as typeTournament.name for typeTournament in typeTournaments">
+							</select>
+							<span ng-show="formCreateTournament.TournamentType.$error.required">Choisissez un type de tournoi.</span>
+						</div>
+					<div class="row">
+					<div class ="col-sm-offset-3 text-center">
+					<input type ="button"  value="Créer le tournoi" id="CreateTournamentButton" class="col-md-8" ng-disabled="formCreateTournament.$invalid" ng-click="send()"/>
+					<!--	onClick="window.location.href='#/addParticipants?nb'"-->
+					</div>
+					</div>
+				</form>
+		</div>		

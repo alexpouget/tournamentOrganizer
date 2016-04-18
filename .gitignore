@@ -5,3 +5,10 @@
 .idea/*
 .idea/jsLibraryMappings.xml
 application.properties
+<<<<<<< HEAD
+=======
+target/*
+.DS_Store
+*.iml
+lib/
+>>>>>>> develop
