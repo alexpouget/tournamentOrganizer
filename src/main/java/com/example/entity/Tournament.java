@@ -23,6 +23,15 @@ public class Tournament {
     @Column(name = "nbplayer")
     private int nbPlayer;
 
+    public Tournament(String name, TypeTournament typeTournament, int nbPlayer) {
+        this.name = name;
+        this.typeTournament = typeTournament;
+        this.nbPlayer = nbPlayer;
+    }
+
+    public Tournament() {
+    }
+
     public int getId() {
         return id;
     }

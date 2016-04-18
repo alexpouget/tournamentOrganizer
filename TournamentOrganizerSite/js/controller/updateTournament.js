@@ -56,7 +56,7 @@ angular.module('TournamentOrganizerApp').controller('updateTournament',
 			 for(var g in $scope.games){
 				 if($scope.games[g].idTournament!=null &&  $scope.games[g].idTournament.id==$scope.selectedTournament.id) {
 					 var new_game = UserMatch.get({Id:$scope.games[g].joueur.id})
-					 window.alert(angular.toJson(new_game))
+
 					 new_game = $scope.games[g].joueur
 					 new_game.$update({Id: new_game.id})
 					 var new_game2 = UserMatch.get({Id:$scope.games[g].joueur2.id})
@@ -84,8 +84,6 @@ angular.module('TournamentOrganizerApp').controller('updateTournament',
 						 new_.points += 1;
 						 new_2.points += 1;
 					 }
-					 window.alert(angular.toJson(new_));
-					 window.alert(angular.toJson(new_2));
 
 					 new_.$update({Id:new_.id})
 					 new_2.$update({Id:new_2.id})

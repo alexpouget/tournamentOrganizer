@@ -24,6 +24,15 @@ public class UserTournament {
     @Column(name = "points")
     private int points;
 
+    public UserTournament(User idUserTournament, Tournament idTournament, int points) {
+        this.idUserTournament = idUserTournament;
+        this.idTournament = idTournament;
+        this.points = points;
+    }
+
+    public UserTournament() {
+    }
+
     public int getId() {
         return id;
     }

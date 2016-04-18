@@ -25,6 +25,15 @@ public class UserMatch {
     @JoinColumn(name = "idgame")
     private Game idGame;
 
+    public UserMatch(UserTournament idUser, int score, Game idGame) {
+        this.idUser = idUser;
+        this.score = score;
+        this.idGame = idGame;
+    }
+
+    public UserMatch() {
+    }
+
     public int getId() {
         return id;
     }

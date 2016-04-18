@@ -26,6 +26,13 @@ public class Game {
     @JoinColumn(name = "idtournament")
     private Tournament idTournament;
 
+    public Game(int groupe, int position, Tournament idTournament) {
+        this.groupe = groupe;
+        this.position = position;
+        this.idTournament = idTournament;
+    }
+
+
 
     public int getId(){
         return id;

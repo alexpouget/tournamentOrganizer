@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class LogAspect {
 
-    @Before("execution(* com.example.controller.UserController.getUsers(int))")
+    @Before("execution(* com.example.controller.TournamentController.addTournament())")
     public void logBefore(JoinPoint joinPoint) {
 
         System.out.println("Before");

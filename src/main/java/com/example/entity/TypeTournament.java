@@ -19,7 +19,12 @@ public class TypeTournament {
     @Column(name = "name")
     private String name;
 
+    public TypeTournament(String name) {
+        this.name = name;
+    }
 
+    public TypeTournament() {
+    }
 
     public int getIdTypeTournament() {
         return idTypeTournament;

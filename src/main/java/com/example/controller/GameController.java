@@ -5,6 +5,7 @@ import com.example.repository.GameRepository;
 import com.example.repository.UserMatchRepository;
 import com.example.repository.UserTournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,7 @@ public class GameController {
 	
 	@RequestMapping(method = RequestMethod.POST)
     public Game addGames(@RequestBody Game game){
+        System.out.println("game controller");
         List<UserMatch> list = new ArrayList<>();
         Tournament tournament = game.getIdTournament();
         switch (tournament.getTypeTournament().getName()) {
